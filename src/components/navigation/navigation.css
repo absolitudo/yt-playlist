@@ -1,3 +1,22 @@
 nav {
-    color: red;
+    width: 100%;
+    height: 40px;
+}
+
+.user-status {
+    width: 150px;
+    height: 100%;
+    float: right;
+    text-align: center;
+}
+
+.user-status a {
+    color: #065fd4;
+    font-size: 16px;
+    border: none;
+    display: block;
+    height: 40px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 40px;
 }
