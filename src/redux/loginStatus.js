@@ -1,18 +1,20 @@
 import Cookies from "js-cookie";
-import jwt from "jsonwebtoken";
+import { getUserData } from "./helpers";
 
-const userData = jwt.decode(Cookies.get("session_token"));
-
-const defaultState = {
-    userName: userData ? userData.title : null,
-    thumbnail: userData ? userData.thumbnail : null
-};
+const defaultState = getUserData();
 
 const loginStatus = (state = defaultState, action) => {
     switch (action.type) {
+        case "LOGOUT":
+            return onLogout();
         default:
             return state;
     }
+};
+
+const onLogout = () => {
+    Cookies.remove("session_token");
+    return getUserData();
 };
 
 export default loginStatus;
