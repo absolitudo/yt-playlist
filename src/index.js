@@ -7,7 +7,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import "./index.css";
 import App from "./app";
 
-import reducer from "./redux";
+import reducer from "./redux/reducers";
 
 const store = createStore(reducer);
 
