@@ -4,9 +4,16 @@ import jwt from "jsonwebtoken";
 const getUserData = () => {
     const userData = jwt.decode(Cookies.get("session_token"));
 
+    if (userData && !(userData.exp * 1000 < Date.now())) {
+        return {
+            userName: userData.title,
+            thumbnail: userData.thumbnail
+        };
+    }
+
     return {
-        userName: userData ? userData.title : null,
-        thumbnail: userData ? userData.thumbnail : null
+        userName: null,
+        thumbnail: null
     };
 };
 
