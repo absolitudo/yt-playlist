@@ -41,18 +41,18 @@ const LoggedIn = props => (
     </React.Fragment>
 );
 
-class AccountInfo extends React.Component {
-    render() {
-        return (
-            <div className="nav-account-info">
-                <p>{this.props.userName}</p>
-                <button onMouseDown={this.props.logOut}>SIGN OUT</button>
-            </div>
-        );
-    }
-}
+const AccountInfo = props => (
+    <div className="nav-account-info">
+        <p>{props.userName}</p>
+        <button onMouseDown={props.logOut}>SIGN OUT</button>
+    </div>
+);
 
-const LoggedOut = () => <a href="/login">SIGN IN</a>;
+const LoggedOut = () => (
+    <a href="/login" className="sign-in">
+        SIGN IN
+    </a>
+);
 
 const mapStateToProps = state => ({
     loginState: state.loginState,

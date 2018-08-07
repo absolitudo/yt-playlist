@@ -1,0 +1,85 @@
+.landing {
+    text-align: center;
+    height: 100%;
+}
+
+.landing .l-container {
+    max-width: 600px;
+    margin: auto;
+    height: 80%;
+    min-height: 400px;
+    padding: 70px 0px;
+}
+
+.landing h2 {
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.landing ul {
+    margin-left: 30px;
+    margin-top: 0px;
+    text-align: left;
+    list-style: none;
+}
+
+.landing li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #444;
+}
+
+
+.landing .sign-in {
+    font-size: inherit;
+}
+
+.landing .landing-divider {
+    height: 20%;
+    background-color: red;
+    position: relative;
+}
+.landing .landing-divider:after {
+    width: 100%;
+    content: "";
+    display: block;
+    height: 70px;
+    position: absolute;
+    top: -30px;
+    -webkit-transform: skewY(-2deg);
+    -moz-transform: skewY(-2deg);
+    -ms-transform: skewY(-2deg);
+    -o-transform: skewY(-2deg);
+    transform: skewY(-2deg);
+    background-color: red;
+    z-index: 2;
+}
+
+@media screen and (max-width: 500px) {
+    .landing .l-container {
+        padding: 10px 0px;
+        height: -moz-calc(100% - 70px);
+        height: -webkit-calc(100% - 70px);
+        height: -ms-calc(100% - 70px);
+        height: -o-calc(100% - 70px);
+        height: calc(100% - 70px);
+    }
+
+    .landing h2 {
+        font-size: 28px;
+        padding: 0px 5px;
+    }
+
+    .landing .landing-divider {
+        max-height: 70px;
+    }
+
+    .landing ul {
+        margin-left: 10px;
+    }
+
+    .landing li {
+        padding-right: 10px;
+        line-height: 16px;
+    }
+}

@@ -1,0 +1,7 @@
+main {
+    height: -moz-calc(100% - 50px);
+    height: -webkit-calc(100% - 50px);
+    height: -ms-calc(100% - 50px);
+    height: -o-calc(100% - 50px);
+    height: calc(100% - 50px);
+}
