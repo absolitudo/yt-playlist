@@ -2,10 +2,10 @@ import React from "react";
 import "./main.css";
 import { connect } from "react-redux";
 import Landing from "./landing";
-import Playlists from "./playlists";
+import ManagePlaylists from "./managePlaylists";
 
 const Main = props => (
-    <main>{props.loginState.userName ? <Playlists /> : <Landing />}</main>
+    <main>{props.loginState.userName ? <ManagePlaylists /> : <Landing />}</main>
 );
 
 const mapStateToProps = state => ({
