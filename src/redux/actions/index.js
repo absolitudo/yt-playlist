@@ -7,4 +7,9 @@ const logOut = () => ({
     type: "LOGOUT"
 });
 
-export { setShowAccountInfo, logOut };
+const setPlaylists = payload => ({
+    type: "SET_PLAYLISTS",
+    payload
+});
+
+export { setShowAccountInfo, logOut, setPlaylists };
