@@ -1,6 +1,6 @@
 const defaultState = {
     items: [],
-    fetched: false
+    fetched: true
 };
 
 const playlists = (state = defaultState, action) => {

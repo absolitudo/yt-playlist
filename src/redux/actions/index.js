@@ -12,4 +12,13 @@ const setPlaylists = payload => ({
     payload
 });
 
-export { setShowAccountInfo, logOut, setPlaylists };
+const clearErrors = () => ({
+    type: "CLEAR_ERRORS"
+});
+
+const displayError = payload => ({
+    type: "DISPLAY_ERROR",
+    payload
+});
+
+export { setShowAccountInfo, logOut, setPlaylists, clearErrors, displayError };

@@ -3,15 +3,20 @@ import LoadingSpinner from "../loadingSpinner";
 import ShowPlaylists from "./showPlaylists";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { setPlaylists } from "../../redux/actions";
+import { setPlaylists, displayError } from "../../redux/actions";
 
 class ManagePlaylists extends React.Component {
     componentDidMount() {
         fetch("/getplaylists")
             .then(res => res.json())
-            .then(res => setPlaylists(res))
-            .catch(e => console.log(e));
+            .then(res => {
+                if (!res.error) {
+                    this.props.setPlaylists(res);
+                } else {
+                    this.props.displayError(res.error);
+                }
+            })
+            .catch(e => this.props.displayError(e.toString()));
     }
 
     render() {
@@ -32,7 +37,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ setPlaylists }, dispatch);
+    bindActionCreators({ setPlaylists, displayError }, dispatch);
 
 export default connect(
     mapStateToProps,
