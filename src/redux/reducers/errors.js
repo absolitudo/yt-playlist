@@ -5,7 +5,6 @@ const errors = (state = defaultState, action) => {
         case "CLEAR_ERRORS":
             return clearErrors();
         case "DISPLAY_ERROR":
-            console.log(action.type);
             return displayError(state, action);
         default:
             return state;

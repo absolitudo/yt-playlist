@@ -1,0 +1,29 @@
+.error-display {
+    background-color: #faa;
+    display: flex;
+}
+
+.error-msg-container {
+    width: -moz-calc(100% - 70px);
+    width: -webkit-calc(100% - 70px);
+    width: -ms-calc(100% - 70px);
+    width: -o-calc(100% - 70px);
+    width: calc(100% - 70px);
+    padding: 10px 0px;
+}
+
+.error-msg-container p {
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.error-display .error-msg-close {
+    display: flex;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-display .error-msg-close a {
+    cursor: pointer;
+}
