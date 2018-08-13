@@ -29,7 +29,7 @@ const LoggedIn = props => (
             onFocus={() => props.setShowAccountInfo(true)}
             onBlur={() => props.setShowAccountInfo(false)}
         >
-            <img src={props.loginState.thumbnail} alt="thumbnail of the user" />
+            <img src={props.loginState.thumbnail} alt="thumbnail" />
         </button>
         {props.navState.showAccountInfo && (
             <AccountInfo

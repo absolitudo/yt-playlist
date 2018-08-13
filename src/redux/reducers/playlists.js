@@ -1,5 +1,7 @@
+import playlistsinfo from "./forDevPlaylists.json";
+
 const defaultState = {
-    items: [],
+    items: playlistsinfo,
     fetched: true
 };
 
