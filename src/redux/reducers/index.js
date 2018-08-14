@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import loginState from "./loginState";
-import playlists from "./playlists";
 import nav from "./nav";
 import errors from "./errors";
+import managePlaylists from "./managePlaylists";
 
 export default combineReducers({
     loginState,
     nav,
-    playlists,
-    errors
+    errors,
+    managePlaylists
 });

@@ -27,7 +27,7 @@ const ShowPlaylists = props => (
 );
 
 const mapStateToProps = state => ({
-    items: state.playlists.items
+    items: state.managePlaylists.playlists.items
 });
 
 export default connect(mapStateToProps)(ShowPlaylists);
