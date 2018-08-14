@@ -1,4 +1,5 @@
 import React from "react";
+import LoadingSpinner from "./../loadingSpinner";
 import ShowPlaylists from "./showPlaylists";
 import SelectedPlaylist from "./selectedPlaylist";
 import { connect } from "react-redux";
@@ -22,7 +23,11 @@ class ManagePlaylists extends React.Component {
     render() {
         return (
             <section className="manage-playlists">
-                {selectDisplay(this.props.display)}
+                {this.props.fetching ? (
+                    <LoadingSpinner />
+                ) : (
+                    selectDisplay(this.props.display)
+                )}
             </section>
         );
     }
@@ -34,11 +39,18 @@ const selectDisplay = display => {
             return <ShowPlaylists />;
         case "selectedPlaylist":
             return <SelectedPlaylist />;
+        default:
+            return <ShowPlaylists />;
     }
 };
 
 const mapStateToProps = state => ({
-    display: state.managePlaylists.display
+    display: state.managePlaylists.display,
+    fetching:
+        state.managePlaylists.playlists.fetching ||
+        state.managePlaylists.selectedPlaylist.fetching
+            ? true
+            : false
 });
 
 const mapDispatchToProps = dispatch =>

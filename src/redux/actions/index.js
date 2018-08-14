@@ -21,4 +21,22 @@ const displayError = payload => ({
     payload
 });
 
-export { setShowAccountInfo, logOut, setPlaylists, clearErrors, displayError };
+const selectPlaylist = payload => ({
+    type: "SELECT_PLAYLIST",
+    payload
+});
+
+const setSelectedPlaylistItems = payload => ({
+    type: "SET_SELECTED_PLAYLIST_ITEMS",
+    payload
+});
+
+export {
+    setShowAccountInfo,
+    logOut,
+    setPlaylists,
+    clearErrors,
+    displayError,
+    selectPlaylist,
+    setSelectedPlaylistItems
+};
