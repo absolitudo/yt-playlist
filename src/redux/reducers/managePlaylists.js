@@ -2,10 +2,10 @@ const defaultState = {
     display: "playlists",
     playlists: {
         items: [],
-        fetching: true
+        fetching: false
     },
     selectedPlaylist: {
-        fetching: true,
+        fetching: false,
         id: null,
         items: []
     }
@@ -13,6 +13,8 @@ const defaultState = {
 
 const managePlaylists = (state = defaultState, action) => {
     switch (action.type) {
+        case "START_PLAYLISTS_FETCH":
+            return startPlaylistsFetch(state);
         case "SELECT_PLAYLIST":
             return selectPlaylist(state, action.payload);
         case "SET_SELECTED_PLAYLIST_ITEMS":
@@ -23,6 +25,14 @@ const managePlaylists = (state = defaultState, action) => {
             return state;
     }
 };
+
+const startPlaylistsFetch = state => ({
+    ...state,
+    playlists: {
+        ...state.playlists,
+        fetching: true
+    }
+});
 
 const selectPlaylist = (state, payload) => ({
     ...state,

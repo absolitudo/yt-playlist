@@ -31,6 +31,10 @@ const setSelectedPlaylistItems = payload => ({
     payload
 });
 
+const startPlaylistsFetch = () => ({
+    type: "START_PLAYLISTS_FETCH"
+});
+
 export {
     setShowAccountInfo,
     logOut,
@@ -38,5 +42,6 @@ export {
     clearErrors,
     displayError,
     selectPlaylist,
-    setSelectedPlaylistItems
+    setSelectedPlaylistItems,
+    startPlaylistsFetch
 };

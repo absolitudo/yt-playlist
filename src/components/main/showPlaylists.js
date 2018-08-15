@@ -14,7 +14,7 @@ const ShowPlaylists = props => (
                     handlePlaylistSelection(
                         data.id,
                         props.selectPlaylist,
-                        props.setSelectedPlaylistData
+                        props.setSelectedPlaylistItems
                     )
                 }
                 key={index}
@@ -43,7 +43,7 @@ const ShowPlaylists = props => (
 const handlePlaylistSelection = (
     playlistId,
     selectPlaylist,
-    setSelectedPlaylistData
+    setSelectedPlaylistItems
 ) => {
     selectPlaylist(playlistId);
     fetch("/api/getplaylistitems", {
@@ -52,7 +52,7 @@ const handlePlaylistSelection = (
         }
     })
         .then(res => res.json())
-        .then(res => setSelectedPlaylistData(res));
+        .then(res => setSelectedPlaylistItems(res));
 };
 
 const mapStateToProps = state => ({
