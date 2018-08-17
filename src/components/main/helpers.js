@@ -8,9 +8,7 @@ import {
 
 const getPlaylists = dispatch => {
     dispatch(startPlaylistsFetch());
-    fetch("http://ide50-absolitudo.cs50.io:8080/api/getplaylists", {
-        mode: "no-cors"
-    })
+    fetch("/api/getplaylists")
         .then(res => res.json())
         .then(res => {
             if (!res.error) {
