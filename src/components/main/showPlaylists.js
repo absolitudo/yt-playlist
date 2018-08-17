@@ -1,22 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import {
-    selectPlaylist,
-    setSelectedPlaylistItems
-} from "./../../redux/actions";
+import { handlePlaylistSelection } from "./helpers";
 
 const ShowPlaylists = props => (
     <ul className="playlists">
         {props.items.map((data, index) => (
             <li
-                onClick={() =>
-                    handlePlaylistSelection(
-                        data.id,
-                        props.selectPlaylist,
-                        props.setSelectedPlaylistItems
-                    )
-                }
+                onClick={() => handlePlaylistSelection(props.dispatch, data.id)}
                 key={index}
             >
                 <div
@@ -40,29 +30,8 @@ const ShowPlaylists = props => (
     </ul>
 );
 
-const handlePlaylistSelection = (
-    playlistId,
-    selectPlaylist,
-    setSelectedPlaylistItems
-) => {
-    selectPlaylist(playlistId);
-    fetch("/api/getplaylistitems", {
-        headers: {
-            "playlist-id": playlistId
-        }
-    })
-        .then(res => res.json())
-        .then(res => setSelectedPlaylistItems(res));
-};
-
 const mapStateToProps = state => ({
     items: state.managePlaylists.playlists.items
 });
 
-const mapDispatchToProps = dispatch =>
-    bindActionCreators({ selectPlaylist, setSelectedPlaylistItems }, dispatch);
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ShowPlaylists);
+export default connect(mapStateToProps)(ShowPlaylists);
