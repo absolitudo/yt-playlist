@@ -6,26 +6,61 @@ main {
     height: calc(100% - 50px);
 }
 
-main .playlists {
+main .yt-items {
     list-style: none;
-    padding: 0px;
-    max-width: 420px;
-    margin-left: 50px;
+    padding: 0px 20px;
 }
 
-main .playlists li {
+main .yt-items li {
     margin: 20px 0px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+}
+
+main .yt-img-conatiner {
+    position: relative;
+    height: 138px;
+    width: 246px;
+    flex: none;
+}
+
+main .yt-img-conatiner img {
+    height: 100%;
+    width: 100%;
+}
+
+main .yt-items li .yt-data-container {
+    width: -moz-calc(100% - 246px);
+    width: -webkit-calc(100% - 246px);
+    width: -ms-calc(100% - 246px);
+    width: -o-calc(100% - 246px);
+    width: calc(100% - 246px);
+    min-width: 246px;
+    max-width: 500px;
+}
+
+main .yt-items li .yt-data-title {
+    width: 100%;
+    margin: 0px;
+    padding: 0px 5px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+
+main .yt-items li .yt-data-metadata {
+    width: 100%;
+    padding: 0px 5px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+
+main .yt-items.playlist li {
     cursor: pointer;
 }
 
-main .playlists li .playlist-picture-conatiner {
-    position: relative;
-}
-
-main .playlists li:hover .playlist-picture-conatiner::before {
+main .yt-items.playlist li:hover .yt-img-conatiner::before {
     content: "select playlist";
     position: absolute;
     height: 100%;
@@ -40,47 +75,17 @@ main .playlists li:hover .playlist-picture-conatiner::before {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-main .playlists li .playlist-info {
-    width: 280px; 
-}
-
-
-main .playlists li p {
-    margin: 5px 0px 0px 0px;
-    padding: 0px 5px;
-    font-size: 12px;
-    overflow: hidden;
-    white-space: nowrap; 
-    text-overflow: ellipsis;
-}
-
-main .playlists li h3 {
-    margin: 0px;
-    padding: 0px 5px;
-    overflow: hidden;
-    white-space: nowrap; 
-    text-overflow: ellipsis;
-}
-
-
-@media screen and (max-width: 470px) { 
-    main .playlists {
-        margin: auto;
-    }
-
-}
-
-@media screen and (max-width: 420px) {
-    main .playlists li {
+@media screen and (max-width: 549px) {
+    main .yt-items li {
+        flex-wrap: wrap;
         text-align: center;
         margin: 30px 0px;
+        justify-content: center;
     }
+}
 
-    main .playlists li p {
-        margin: 0px;
-    }
-
-    main .playlists {
-        margin: auto;
+@media screen and (max-width: 509px) {
+    main .yt-items {
+        padding: 0px;
     }
 }
