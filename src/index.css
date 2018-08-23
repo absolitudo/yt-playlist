@@ -53,3 +53,8 @@ html, body, #root {
 .bold {
     font-weight: bold;
 }
+
+.separator {
+    font-weight: 400;
+    margin: 0 4px;
+}

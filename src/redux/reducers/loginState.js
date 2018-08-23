@@ -1,8 +1,11 @@
 import Cookies from "js-cookie";
 import { getUserData } from "./helpers";
 
-const defaultState = getUserData();
-
+//const defaultState = getUserData();
+const defaultState = {
+    userName: "Ákos",
+    thumbnail: null
+};
 const loginStatus = (state = defaultState, action) => {
     switch (action.type) {
         case "LOGOUT":

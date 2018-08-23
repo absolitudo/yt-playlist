@@ -14,6 +14,7 @@ main .yt-items {
 main .yt-items li {
     margin: 20px 0px;
     display: flex;
+    height: 138px;
 }
 
 main .yt-img-conatiner {
@@ -28,7 +29,7 @@ main .yt-img-conatiner img {
     width: 100%;
 }
 
-main .yt-items li .yt-data-container {
+main .yt-data-container {
     width: -moz-calc(100% - 246px);
     width: -webkit-calc(100% - 246px);
     width: -ms-calc(100% - 246px);
@@ -36,25 +37,28 @@ main .yt-items li .yt-data-container {
     width: calc(100% - 246px);
     min-width: 246px;
     max-width: 500px;
+    height: 100%;    
+    display: flex;
+    flex-direction: column;
 }
 
-main .yt-items li .yt-data-title {
+main .yt-data-title {
+    text-decoration: none;
+    color: #333;
     width: 100%;
     margin: 0px;
     padding: 0px 5px;
+    flex: none;
     overflow: hidden;
     white-space: nowrap; 
     text-overflow: ellipsis;
 }
 
-main .yt-items li .yt-data-metadata {
-    width: 100%;
-    padding: 0px 5px;
-    font-size: 12px;
-    overflow: hidden;
-    white-space: nowrap; 
-    text-overflow: ellipsis;
+main .yt-data-title a {
+    text-decoration: none;
+    color: inherit;
 }
+
 
 main .yt-items.playlist li {
     cursor: pointer;
@@ -75,12 +79,54 @@ main .yt-items.playlist li:hover .yt-img-conatiner::before {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+main .yt-data-metadata-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main .yt-data-metadata-container p {
+    margin: 0px;
+    padding: 0px;
+}
+
+main .yt-data-metadata-dataholder {
+    color: #555;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+
+main .yt-data-metadata {
+    width: 100%;
+    padding: 0px 5px;
+    font-size: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+main .yt-data-metadata .yt-data-description {
+    overflow: hidden;
+    color: grey;
+    margin: 21px 0 0 0;
+}
+
 @media screen and (max-width: 549px) {
     main .yt-items li {
         flex-wrap: wrap;
         text-align: center;
         margin: 30px 0px;
         justify-content: center;
+        height: 260px;
+    }
+
+    main .yt-data-container {
+        height: -moz-calc(100% - 138px);
+        height: -webkit-calc(100% - 138px);
+        height: -ms-calc(100% - 138px);
+        height: -o-calc(100% - 138px);
+        height: calc(100% - 138px);
     }
 }
 
