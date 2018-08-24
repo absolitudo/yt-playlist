@@ -7,7 +7,7 @@ import deleteIcon from "../../../assets/outline-delete-24px.svg";
 const SelectedPlaylist = props => (
     <ul className="yt-items">
         {props.items.map((data, index) => (
-            <li key={index}>
+            <li className="playlist-item" key={index}>
                 <ImageContainer data={data} />
                 <DataContainer data={data} />
                 <RemoveItem />
@@ -17,7 +17,7 @@ const SelectedPlaylist = props => (
 );
 
 const ImageContainer = ({ data }) => (
-    <div className="yt-img-conatiner">
+    <div className="yt-img-container">
         <img src={data.snippet.thumbnails.medium.url} alt="video" />
     </div>
 );

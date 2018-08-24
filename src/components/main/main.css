@@ -17,14 +17,13 @@ main .yt-items li {
     height: 138px;
 }
 
-main .yt-img-conatiner {
+main .yt-img-container {
     position: relative;
     height: 138px;
     width: 246px;
-    flex: none;
 }
 
-main .yt-img-conatiner img {
+main .yt-img-container img {
     height: 100%;
     width: 100%;
 }
@@ -65,7 +64,7 @@ main .yt-items.playlist li {
     cursor: pointer;
 }
 
-main .yt-items.playlist li:hover .yt-img-conatiner::before {
+main .yt-items.playlist li:hover .yt-img-container::before {
     content: "select playlist";
     position: absolute;
     height: 100%;
@@ -114,13 +113,34 @@ main .yt-data-metadata .yt-data-description {
     line-height: 18px;
 }
 
+main .yt-delete-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 48px;
+}
+
+main .yt-delete-container img {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 549px) {
     main .yt-items li {
-        flex-direction: column;
-        text-align: center;
-        margin: 30px 0px;
-        justify-content: center;
-        height: 260px;
+        display: block;
+        margin-bottom: 50px;
+
+    }
+
+    main .yt-items li.playlist-item {
+        height: 284px;
+    }
+
+    main .yt-img-container {
+        margin: auto;
+    }
+
+    main .yt-data-container {
+        margin: auto;
     }
 
     main .yt-data-container {

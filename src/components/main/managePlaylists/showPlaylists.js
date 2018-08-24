@@ -9,7 +9,7 @@ const ShowPlaylists = props => (
                 onClick={() => handlePlaylistSelection(props.dispatch, data.id)}
                 key={index}
             >
-                <div className="yt-img-conatiner">
+                <div className="yt-img-container">
                     <img
                         src={data.snippet.thumbnails.medium.url}
                         alt="playlist thumbnail"
