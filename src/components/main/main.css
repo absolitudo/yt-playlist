@@ -19,6 +19,7 @@ main .yt-items li {
 
 main .yt-img-container {
     position: relative;
+    flex: none;
     height: 138px;
     width: 246px;
 }
@@ -124,11 +125,11 @@ main .yt-delete-container img {
     cursor: pointer;
 }
 
-@media screen and (max-width: 549px) {
+@media screen and (max-width: 600px) {
     main .yt-items li {
         display: block;
-        margin-bottom: 50px;
-
+        height: 180px;
+        margin-bottom: 40px;
     }
 
     main .yt-items li.playlist-item {
@@ -140,7 +141,16 @@ main .yt-delete-container img {
     }
 
     main .yt-data-container {
+        width: 246px;
         margin: auto;
+    }
+
+    main .yt-data-title {
+        padding: 0px;
+    }
+
+    main .yt-data-metadata {
+        padding: 0px;
     }
 
     main .yt-data-container {
@@ -149,11 +159,5 @@ main .yt-delete-container img {
         height: -ms-calc(100% - 138px);
         height: -o-calc(100% - 138px);
         height: calc(100% - 138px);
-    }
-}
-
-@media screen and (max-width: 509px) {
-    main .yt-items {
-        padding: 0px;
     }
 }
