@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { handlePlaylistSelection } from "./helpers";
+import { handlePlaylistSelection } from "../helpers";
 
 const ShowPlaylists = props => (
     <ul className="yt-items playlist">

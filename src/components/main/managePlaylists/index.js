@@ -1,9 +1,9 @@
 import React from "react";
-import LoadingSpinner from "./../loadingSpinner";
+import LoadingSpinner from "../../loadingSpinner";
 import ShowPlaylists from "./showPlaylists";
 import SelectedPlaylist from "./selectedPlaylist";
 import { connect } from "react-redux";
-import { getPlaylists } from "./helpers";
+import { getPlaylists } from "../helpers";
 
 class ManagePlaylists extends React.Component {
     componentDidMount() {

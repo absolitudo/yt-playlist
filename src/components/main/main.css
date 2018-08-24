@@ -52,6 +52,7 @@ main .yt-data-title {
     overflow: hidden;
     white-space: nowrap; 
     text-overflow: ellipsis;
+    line-height: 24px;
 }
 
 main .yt-data-title a {
@@ -109,12 +110,13 @@ main .yt-data-metadata {
 main .yt-data-metadata .yt-data-description {
     overflow: hidden;
     color: grey;
-    margin: 21px 0 0 0;
+    margin: 10px 0 0 0;
+    line-height: 18px;
 }
 
 @media screen and (max-width: 549px) {
     main .yt-items li {
-        flex-wrap: wrap;
+        flex-direction: column;
         text-align: center;
         margin: 30px 0px;
         justify-content: center;
