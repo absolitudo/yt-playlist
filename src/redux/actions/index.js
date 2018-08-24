@@ -35,6 +35,11 @@ const startPlaylistsFetch = () => ({
     type: "START_PLAYLISTS_FETCH"
 });
 
+const filterRemovedItem = payload => ({
+    type: "FILTER_REMOVED_ITEM",
+    payload
+});
+
 export {
     setShowAccountInfo,
     logOut,
@@ -43,5 +48,6 @@ export {
     displayError,
     selectPlaylist,
     setSelectedPlaylistItems,
-    startPlaylistsFetch
+    startPlaylistsFetch,
+    filterRemovedItem
 };

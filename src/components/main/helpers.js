@@ -3,7 +3,8 @@ import {
     setPlaylists,
     selectPlaylist,
     setSelectedPlaylistItems,
-    displayError
+    displayError,
+    filterRemovedItem
 } from "../../redux/actions";
 import playlists from "./forDevPlaylists.json";
 import aPlaylist from "./funPlaylist.json";
@@ -76,4 +77,31 @@ const convertTime = timeString => {
 
 const milisecToDay = milisec => milisec / 1000 / 60 / 60 / 24;
 
-export { getPlaylists, handlePlaylistSelection, convertViewCount, convertTime };
+const removeVideoFromPlaylist = (dispatch, playlistItemId) => {
+    fetch("/api/deleteplaylistitem", {
+        method: "DELETE",
+        headers: {
+            playlistItemId: playlistItemId
+        }
+    })
+        .then(res => {
+            if (res.status === 204) {
+                dispatch(filterRemovedItem(playlistItemId));
+            } else if (res.headers["content-type"] === "application/json") {
+                throw new Error(res.json().message);
+            } else {
+                throw new Error("Network error");
+            }
+        })
+        .catch(error => {
+            dispatch(displayError(error.toString()));
+        });
+};
+
+export {
+    getPlaylists,
+    handlePlaylistSelection,
+    convertViewCount,
+    convertTime,
+    removeVideoFromPlaylist
+};

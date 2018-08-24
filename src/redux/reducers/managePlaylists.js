@@ -7,7 +7,8 @@ const defaultState = {
     selectedPlaylist: {
         fetching: false,
         id: null,
-        items: []
+        items: [],
+        removing: false
     }
 };
 
@@ -21,6 +22,8 @@ const managePlaylists = (state = defaultState, action) => {
             return setSelectedPlaylistItems(state, action.payload);
         case "SET_PLAYLISTS":
             return setPlaylists(state, action.payload);
+        case "FILTER_REMOVED_ITEM":
+            return filterRemovedItem(state, action.payload);
         default:
             return state;
     }
@@ -38,6 +41,7 @@ const selectPlaylist = (state, payload) => ({
     ...state,
     display: "selectedPlaylist",
     selectedPlaylist: {
+        ...state.selectedPlaylist,
         fetching: true,
         id: payload,
         items: []
@@ -57,8 +61,20 @@ const setPlaylists = (state, payload) => ({
     ...state,
     display: "playlists",
     playlists: {
+        ...state.playlists,
         items: payload,
         fetching: false
+    }
+});
+
+const filterRemovedItem = (state, playlistItemId) => ({
+    ...state,
+    selectedPlaylist: {
+        ...state.selectedPlaylist,
+        items: state.selectedPlaylist.items.filter(
+            item => item.id !== playlistItemId
+        ),
+        removing: false
     }
 });
 

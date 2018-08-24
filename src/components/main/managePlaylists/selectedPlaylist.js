@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { convertViewCount } from "../helpers";
 import { convertTime } from "../helpers";
 import deleteIcon from "../../../assets/outline-delete-24px.svg";
+import { removeVideoFromPlaylist } from "../helpers";
 
 const SelectedPlaylist = props => (
     <ul className="yt-items">
@@ -10,7 +11,11 @@ const SelectedPlaylist = props => (
             <li className="playlist-item" key={index}>
                 <ImageContainer data={data} />
                 <DataContainer data={data} />
-                <RemoveItem />
+                <RemoveItem
+                    removing={props.removing}
+                    playlistItemId={data.id}
+                    dispatch={props.dispatch}
+                />
             </li>
         ))}
     </ul>
@@ -52,9 +57,15 @@ const MetadataContainer = ({ data }) => (
     </div>
 );
 
-const RemoveItem = props => (
+const RemoveItem = ({ dispatch, removing, playlistItemId }) => (
     <div className="yt-delete-container">
-        <img src={deleteIcon} alt="delete" />
+        <img
+            src={deleteIcon}
+            alt="remove"
+            onClick={() =>
+                !removing && removeVideoFromPlaylist(dispatch, playlistItemId)
+            }
+        />
     </div>
 );
 
@@ -69,7 +80,8 @@ const DataHolder = ({ children }) => (
 const Separator = () => <span className="separator">•</span>;
 
 const mapStateToProps = state => ({
-    items: state.managePlaylists.selectedPlaylist.items
+    items: state.managePlaylists.selectedPlaylist.items,
+    removing: state.managePlaylists.selectedPlaylist.removing
 });
 
 export default connect(mapStateToProps)(SelectedPlaylist);

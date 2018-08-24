@@ -5,7 +5,7 @@ const errors = (state = defaultState, action) => {
         case "CLEAR_ERRORS":
             return clearErrors();
         case "DISPLAY_ERROR":
-            return displayError(state, action);
+            return displayError(state, action.payload);
         default:
             return state;
     }
@@ -13,6 +13,6 @@ const errors = (state = defaultState, action) => {
 
 const clearErrors = () => [];
 
-const displayError = (state, action) => [...state, action.payload];
+const displayError = (state, error) => [...state, error];
 
 export default errors;
