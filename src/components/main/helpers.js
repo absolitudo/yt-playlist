@@ -77,25 +77,27 @@ const convertTime = timeString => {
 
 const milisecToDay = milisec => milisec / 1000 / 60 / 60 / 24;
 
-const removeVideoFromPlaylist = (dispatch, playlistItemId) => {
-    fetch("/api/deleteplaylistitem", {
-        method: "DELETE",
-        headers: {
-            playlistItemId: playlistItemId
-        }
-    })
-        .then(res => {
-            if (res.status === 204) {
-                dispatch(filterRemovedItem(playlistItemId));
-            } else if (res.headers["content-type"] === "application/json") {
-                throw new Error(res.json().message);
-            } else {
-                throw new Error("Network error");
+const removeVideoFromPlaylist = (dispatch, playlistItemId, removing) => {
+    if (!removing) {
+        fetch("/api/deleteplaylistitem", {
+            method: "DELETE",
+            headers: {
+                playlistItemId: playlistItemId
             }
         })
-        .catch(error => {
-            dispatch(displayError(error.toString()));
-        });
+            .then(res => {
+                if (res.status === 204) {
+                    dispatch(filterRemovedItem(playlistItemId));
+                } else if (res.headers["content-type"] === "application/json") {
+                    throw new Error(res.json().message);
+                } else {
+                    throw new Error("Network error");
+                }
+            })
+            .catch(error => {
+                dispatch(displayError(error.toString()));
+            });
+    }
 };
 
 export {

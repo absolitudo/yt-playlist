@@ -1,4 +1,5 @@
 import React from "react";
+import constants from "../../../constants";
 import LoadingSpinner from "../../loadingSpinner";
 import ShowPlaylists from "./showPlaylists";
 import SelectedPlaylist from "./selectedPlaylist";
@@ -25,9 +26,9 @@ class ManagePlaylists extends React.Component {
 
 const selectDisplay = display => {
     switch (display) {
-        case "playlists":
+        case constants.display.playlists:
             return <ShowPlaylists />;
-        case "selectedPlaylist":
+        case constants.display.selectedPlaylist:
             return <SelectedPlaylist />;
         default:
             return <ShowPlaylists />;

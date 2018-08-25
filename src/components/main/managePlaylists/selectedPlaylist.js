@@ -63,7 +63,7 @@ const RemoveItem = ({ dispatch, removing, playlistItemId }) => (
             src={deleteIcon}
             alt="remove"
             onClick={() =>
-                !removing && removeVideoFromPlaylist(dispatch, playlistItemId)
+                removeVideoFromPlaylist(dispatch, playlistItemId, removing)
             }
         />
     </div>

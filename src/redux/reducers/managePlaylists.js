@@ -1,5 +1,7 @@
+import constants from "../../constants";
+
 const defaultState = {
-    display: "playlists",
+    display: constants.display.playlists,
     playlists: {
         items: [],
         fetching: false
@@ -39,7 +41,7 @@ const startPlaylistsFetch = state => ({
 
 const selectPlaylist = (state, payload) => ({
     ...state,
-    display: "selectedPlaylist",
+    display: constants.display.selectedPlaylist,
     selectedPlaylist: {
         ...state.selectedPlaylist,
         fetching: true,
@@ -59,7 +61,7 @@ const setSelectedPlaylistItems = (state, payload) => ({
 
 const setPlaylists = (state, payload) => ({
     ...state,
-    display: "playlists",
+    display: constants.display.playlists,
     playlists: {
         ...state.playlists,
         items: payload,
