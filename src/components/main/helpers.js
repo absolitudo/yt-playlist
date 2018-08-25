@@ -26,7 +26,7 @@ const getPlaylists = dispatch => {
         });
 };
 
-const handlePlaylistSelection = (dispatch, playlistId) => {
+const fetchPlaylistFromId = (dispatch, playlistId) => {
     dispatch(selectPlaylist(playlistId));
     fetch("/api/getplaylistitems", {
         headers: {
@@ -102,7 +102,7 @@ const removeVideoFromPlaylist = (dispatch, playlistItemId, removing) => {
 
 export {
     getPlaylists,
-    handlePlaylistSelection,
+    fetchPlaylistFromId,
     convertViewCount,
     convertTime,
     removeVideoFromPlaylist

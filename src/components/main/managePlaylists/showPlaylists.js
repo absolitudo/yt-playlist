@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { handlePlaylistSelection } from "../helpers";
+import { fetchPlaylistFromId } from "../helpers";
 
 const ShowPlaylists = props => (
     <ul className="yt-items playlist">
         {props.items.map((data, index) => (
             <li
-                onClick={() => handlePlaylistSelection(props.dispatch, data.id)}
+                onClick={() => fetchPlaylistFromId(props.dispatch, data.id)}
                 key={index}
             >
                 <div className="yt-img-container">
