@@ -26,6 +26,8 @@ const managePlaylists = (state = defaultState, action) => {
             return setPlaylists(state, action.payload);
         case "FILTER_REMOVED_ITEM":
             return filterRemovedItem(state, action.payload);
+        case "CHANGE_MANAGE_PLAYLIST_DISPLAY":
+            return changeManagePlaylistDisplay(state, action.payload);
         default:
             return state;
     }
@@ -78,6 +80,11 @@ const filterRemovedItem = (state, playlistItemId) => ({
         ),
         removing: false
     }
+});
+
+const changeManagePlaylistDisplay = (state, display) => ({
+    ...state,
+    display
 });
 
 export default managePlaylists;

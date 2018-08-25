@@ -40,6 +40,11 @@ const filterRemovedItem = payload => ({
     payload
 });
 
+const changeManagePlaylistDisplay = payload => ({
+    type: "CHANGE_MANAGE_PLAYLIST_DISPLAY",
+    payload
+});
+
 export {
     setShowAccountInfo,
     logOut,
@@ -49,5 +54,6 @@ export {
     selectPlaylist,
     setSelectedPlaylistItems,
     startPlaylistsFetch,
-    filterRemovedItem
+    filterRemovedItem,
+    changeManagePlaylistDisplay
 };
