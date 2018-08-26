@@ -1,6 +1,8 @@
 nav {
     width: 100%;
     height: 50px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .user-status {
@@ -58,5 +60,16 @@ nav {
     border: none;
     font-size: 16px;
     color: red;
+    cursor: pointer;
+}
+
+.playlist-data-handler {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+    min-width: 70px;
+}
+
+.playlist-data-handler img {
     cursor: pointer;
 }

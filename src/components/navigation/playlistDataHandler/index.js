@@ -3,12 +3,12 @@ import constants from "../../../constants";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { changeManagePlaylistDisplay } from "../../../redux/actions";
-import { fetchPlaylistFromId, getPlaylists } from "../helpers";
+import { fetchPlaylistFromId, getPlaylists } from "../../main/helpers";
 import refreshIcon from "../../../assets/baseline-update-24px.svg";
 import backIcon from "../../../assets/baseline-keyboard_backspace-24px.svg";
 
 const PlaylistDataHandler = props => (
-    <section className="playlist-data-handler">
+    <div className="playlist-data-handler">
         {props.display === constants.display.selectedPlaylist && (
             <IconHolder>
                 <BackIcon
@@ -23,7 +23,7 @@ const PlaylistDataHandler = props => (
         <IconHolder>
             <RefreshIcon onClick={() => handleRefreshClick(props)} />
         </IconHolder>
-    </section>
+    </div>
 );
 
 const IconHolder = props => <div className="icon-holder">{props.children}</div>;

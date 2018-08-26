@@ -2,42 +2,43 @@ import React from "react";
 import "./navigation.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import PlaylistDataHandler from "./playlistDataHandler";
 import { setShowAccountInfo, logOut } from "../../redux/actions";
 
 const Navigation = props => (
     <nav>
-        <div className="user-status">
-            {props.loginState.userName ? (
-                <LoggedIn
-                    loginState={props.loginState}
-                    setShowAccountInfo={props.setShowAccountInfo}
-                    navState={props.navState}
-                    logOut={props.logOut}
-                />
-            ) : (
-                <LoggedOut />
-            )}
-        </div>
+        {props.loginState.userName ? (
+            <LoggedIn
+                loginState={props.loginState}
+                setShowAccountInfo={props.setShowAccountInfo}
+                navState={props.navState}
+                logOut={props.logOut}
+            />
+        ) : (
+            <LoggedOut />
+        )}
     </nav>
 );
 
 const LoggedIn = props => (
     <React.Fragment>
-        <button
-            className="img-container"
-            onFocus={() => props.setShowAccountInfo(true)}
-            onBlur={() => props.setShowAccountInfo(false)}
-        >
-            <img src={props.loginState.thumbnail} alt="thumbnail" />
-        </button>
-        {props.navState.showAccountInfo && (
-            <AccountInfo
-                userName={props.loginState.userName}
-                logOut={props.logOut}
-                setShowAccountInfo={props.setShowAccountInfo}
-            />
-        )}
+        <PlaylistDataHandler />
+        <div className="user-status">
+            <button
+                className="img-container"
+                onFocus={() => props.setShowAccountInfo(true)}
+                onBlur={() => props.setShowAccountInfo(false)}
+            >
+                <img src={props.loginState.thumbnail} alt="thumbnail" />
+            </button>
+            {props.navState.showAccountInfo && (
+                <AccountInfo
+                    userName={props.loginState.userName}
+                    logOut={props.logOut}
+                    setShowAccountInfo={props.setShowAccountInfo}
+                />
+            )}
+        </div>
     </React.Fragment>
 );
 
@@ -49,9 +50,11 @@ const AccountInfo = props => (
 );
 
 const LoggedOut = () => (
-    <a href="/login" className="sign-in">
-        SIGN IN
-    </a>
+    <div className="user-status">
+        <a href="/login" className="sign-in">
+            SIGN IN
+        </a>
+    </div>
 );
 
 const mapStateToProps = state => ({
