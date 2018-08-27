@@ -17,6 +17,16 @@ main .yt-items li {
     height: 138px;
 }
 
+main .yt-items li.message {
+    margin-top: 40px;
+    height: auto;
+}
+main .yt-items li.message p {
+    font-weight: bold;
+    word-spacing: 2px;
+    margin: 0px;
+}
+
 main .yt-img-container {
     position: relative;
     flex: none;
@@ -134,6 +144,10 @@ main .yt-delete-container img {
 
     main .yt-items li.playlist-item {
         height: 284px;
+    }
+
+    main .yt-items li.playlist-item.message {
+        height: auto;
     }
 
     main .yt-img-container {

@@ -11,19 +11,41 @@ const SelectedPlaylist = props => (
         <FiltersForPlaylistItems />
         <ul className="yt-items">
             {props.items.map((data, index) => (
-                <li className="playlist-item" key={index}>
-                    <ImageContainer data={data} />
-                    <DataContainer data={data} />
-                    <RemoveItem
-                        removing={props.removing}
-                        playlistItemId={data.id}
-                        dispatch={props.dispatch}
-                    />
+                <li
+                    className={
+                        "playlist-item" +
+                        (data.kind !== "youtube#video" ? " message" : "")
+                    }
+                    key={index}
+                >
+                    {data.kind === "youtube#video" ? (
+                        <PlaylistItem
+                            data={data}
+                            removing={props.removing}
+                            dispatch={props.dispatch}
+                        />
+                    ) : (
+                        <Message message={data.message} />
+                    )}
                 </li>
             ))}
         </ul>
     </React.Fragment>
 );
+
+const PlaylistItem = props => (
+    <React.Fragment>
+        <ImageContainer data={props.data} />
+        <DataContainer data={props.data} />
+        <RemoveItem
+            removing={props.removing}
+            playlistItemId={props.data.id}
+            dispatch={props.dispatch}
+        />
+    </React.Fragment>
+);
+
+const Message = ({ message }) => <p>{message}</p>;
 
 const ImageContainer = ({ data }) => (
     <div className="yt-img-container">
