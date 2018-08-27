@@ -1,4 +1,5 @@
 import constants from "../../constants";
+import { showUnavailableFilter, showDuplicatesFilter } from "./helpers";
 
 const defaultState = {
     display: constants.display.playlists,
@@ -13,7 +14,8 @@ const defaultState = {
         removing: false,
         filters: {
             selectedFilter: null,
-            duplicateWords: 2
+            duplicateWords: 2,
+            filteredItems: []
         }
     }
 };
@@ -95,24 +97,43 @@ const changeManagePlaylistDisplay = (state, display) => ({
     display
 });
 
-const setFilter = (state, selectedFilter) => ({
-    ...state,
-    selectedPlaylist: {
-        ...state.selectedPlaylist,
-        filters: {
-            ...state.selectedPlaylist.filters,
-            selectedFilter: selectedFilter
-        }
-    }
-});
+const setFilter = (state, selectedFilter) => {
+    let filteredItems = [];
 
-const setDuplicateWords = (state, words) => ({
+    switch (selectedFilter) {
+        case constants.filters.showUnavailable:
+            filteredItems = showUnavailableFilter(state.selectedPlaylist.items);
+            break;
+        case constants.filters.showDuplicates:
+            filteredItems = showDuplicatesFilter(
+                state.selectedPlaylist.items,
+                state.selectedPlaylist.filters.duplicateWords
+            );
+            break;
+        default:
+            filteredItems = [];
+    }
+
+    return {
+        ...state,
+        selectedPlaylist: {
+            ...state.selectedPlaylist,
+            filters: {
+                ...state.selectedPlaylist.filters,
+                selectedFilter: selectedFilter,
+                filteredItems: filteredItems
+            }
+        }
+    };
+};
+
+const setDuplicateWords = (state, duplicateWords) => ({
     ...state,
     selectedPlaylist: {
         ...state.selectedPlaylist,
         filters: {
             ...state.selectedPlaylist.filters,
-            duplicateWords: words
+            duplicateWords: duplicateWords
         }
     }
 });

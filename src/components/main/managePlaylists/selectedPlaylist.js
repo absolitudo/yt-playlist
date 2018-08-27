@@ -106,7 +106,9 @@ const DataHolder = ({ children }) => (
 const Separator = () => <span className="separator">•</span>;
 
 const mapStateToProps = state => ({
-    items: state.managePlaylists.selectedPlaylist.items,
+    items: state.managePlaylists.selectedPlaylist.filters.selectedFilter
+        ? state.managePlaylists.selectedPlaylist.filters.filteredItems
+        : state.managePlaylists.selectedPlaylist.items,
     removing: state.managePlaylists.selectedPlaylist.removing
 });
 
