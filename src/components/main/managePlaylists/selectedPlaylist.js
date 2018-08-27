@@ -4,21 +4,25 @@ import { convertViewCount } from "../helpers";
 import { convertTime } from "../helpers";
 import deleteIcon from "../../../assets/outline-delete-24px.svg";
 import { removeVideoFromPlaylist } from "../helpers";
+import FiltersForPlaylistItems from "./filtersForPlaylistItems";
 
 const SelectedPlaylist = props => (
-    <ul className="yt-items">
-        {props.items.map((data, index) => (
-            <li className="playlist-item" key={index}>
-                <ImageContainer data={data} />
-                <DataContainer data={data} />
-                <RemoveItem
-                    removing={props.removing}
-                    playlistItemId={data.id}
-                    dispatch={props.dispatch}
-                />
-            </li>
-        ))}
-    </ul>
+    <React.Fragment>
+        <FiltersForPlaylistItems />
+        <ul className="yt-items">
+            {props.items.map((data, index) => (
+                <li className="playlist-item" key={index}>
+                    <ImageContainer data={data} />
+                    <DataContainer data={data} />
+                    <RemoveItem
+                        removing={props.removing}
+                        playlistItemId={data.id}
+                        dispatch={props.dispatch}
+                    />
+                </li>
+            ))}
+        </ul>
+    </React.Fragment>
 );
 
 const ImageContainer = ({ data }) => (

@@ -2,5 +2,9 @@
     "display": {
         "playlists": "playlists",
         "selectedPlaylist": "selectedPlaylist"
+    },
+    "filters": {
+        "showUnavailable": "showUnavailable",
+        "showDuplicates": "showDuplicates"
     }
 }

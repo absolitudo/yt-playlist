@@ -45,6 +45,16 @@ const changeManagePlaylistDisplay = payload => ({
     payload
 });
 
+const setFilter = payload => ({
+    type: "SET_FILTER",
+    payload
+});
+
+const setDuplicateWords = payload => ({
+    type: "SET_DUPLICATE_WORDS",
+    payload
+});
+
 export {
     setShowAccountInfo,
     logOut,
@@ -55,5 +65,7 @@ export {
     setSelectedPlaylistItems,
     startPlaylistsFetch,
     filterRemovedItem,
-    changeManagePlaylistDisplay
+    changeManagePlaylistDisplay,
+    setFilter,
+    setDuplicateWords
 };

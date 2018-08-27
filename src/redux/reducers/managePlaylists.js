@@ -10,7 +10,11 @@ const defaultState = {
         fetching: false,
         id: null,
         items: [],
-        removing: false
+        removing: false,
+        filters: {
+            selectedFilter: null,
+            duplicateWords: 2
+        }
     }
 };
 
@@ -28,6 +32,10 @@ const managePlaylists = (state = defaultState, action) => {
             return filterRemovedItem(state, action.payload);
         case "CHANGE_MANAGE_PLAYLIST_DISPLAY":
             return changeManagePlaylistDisplay(state, action.payload);
+        case "SET_FILTER":
+            return setFilter(state, action.payload);
+        case "SET_DUPLICATE_WORDS":
+            return setDuplicateWords(state, action.payload);
         default:
             return state;
     }
@@ -85,6 +93,28 @@ const filterRemovedItem = (state, playlistItemId) => ({
 const changeManagePlaylistDisplay = (state, display) => ({
     ...state,
     display
+});
+
+const setFilter = (state, selectedFilter) => ({
+    ...state,
+    selectedPlaylist: {
+        ...state.selectedPlaylist,
+        filters: {
+            ...state.selectedPlaylist.filters,
+            selectedFilter: selectedFilter
+        }
+    }
+});
+
+const setDuplicateWords = (state, words) => ({
+    ...state,
+    selectedPlaylist: {
+        ...state.selectedPlaylist,
+        filters: {
+            ...state.selectedPlaylist.filters,
+            duplicateWords: words
+        }
+    }
 });
 
 export default managePlaylists;
