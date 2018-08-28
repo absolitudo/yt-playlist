@@ -36,12 +36,13 @@ const showUnavailableFilter = items =>
 const showDuplicatesFilter = (items, duplicateWords) => {
     let tmp = {};
 
-    for (let item of items) {
+    for (let [index, item] of items.entries()) {
         let words = item.snippet.title
             .replace(
                 /`|~|!|@|#|\$|%|\^|&|\*|\(|\)|\+|=|\[|\{|\]|\}|\||\\|'|<|,|\.|>|\?|\/|"|;|:|-/g,
                 ""
             )
+            .toLowerCase()
             .match(/\S+/g);
 
         let duplicate = "";
@@ -49,9 +50,12 @@ const showDuplicatesFilter = (items, duplicateWords) => {
         if (words.length <= duplicateWords) {
             duplicate = words.join("");
             if (!tmp[duplicate]) {
-                tmp[duplicate] = [item];
+                tmp[duplicate] = {
+                    index: index,
+                    items: [item]
+                };
             } else {
-                tmp[duplicate].push(item);
+                tmp[duplicate].items.push(item);
             }
         } else {
             for (let i = 0; i < words.length; i++) {
@@ -59,9 +63,9 @@ const showDuplicatesFilter = (items, duplicateWords) => {
                 if ((i + 1) % duplicateWords === 0) {
                     duplicate = duplicate.trim();
                     if (!tmp[duplicate]) {
-                        tmp[duplicate] = [item];
-                    } else {
-                        tmp[duplicate].push(item);
+                        tmp[duplicate] = { index: index, items: [item] };
+                    } else if (tmp[duplicate].index !== index) {
+                        tmp[duplicate].items.push(item);
                     }
                     duplicate = "";
                 }
@@ -72,9 +76,9 @@ const showDuplicatesFilter = (items, duplicateWords) => {
     let duplicates = [];
 
     for (let key in tmp) {
-        if (tmp[key].length > 1) {
+        if (tmp[key].items.length > 1) {
             duplicates.push({ kind: "message", message: key + ":" });
-            tmp[key].map(item => duplicates.push(item));
+            tmp[key].items.map(item => duplicates.push(item));
         }
     }
 
