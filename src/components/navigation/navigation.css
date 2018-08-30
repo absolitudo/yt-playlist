@@ -25,6 +25,7 @@ nav {
     position: relative;
     border: none;
     padding: 0;
+    cursor: pointer;
 }
 .user-status .img-container:focus {
     outline: none;
@@ -38,7 +39,6 @@ nav {
     position: absolute;
     top: 7.5px;
     left: 7.5px;
-    cursor: pointer;
 }
 
 .user-status .img-container:focus img { 
@@ -49,6 +49,8 @@ nav {
 
 .nav-account-info {
     position: absolute;
+    z-index: 2;
+    background-color: white;
     top: 50px;
     right: 0px;
     width: 150px;

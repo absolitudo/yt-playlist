@@ -122,6 +122,7 @@ main .yt-data-metadata .yt-data-description {
     color: grey;
     margin: 10px 0 0 0;
     line-height: 18px;
+    max-height: 90px;
 }
 
 main .yt-delete-container {
@@ -143,10 +144,6 @@ main .yt-delete-container img {
     }
 
     main .yt-items li.playlist-item {
-        height: 284px;
-    }
-
-    main .yt-items li.playlist-item.message {
         height: auto;
     }
 
