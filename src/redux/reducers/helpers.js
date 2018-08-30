@@ -19,6 +19,10 @@ const getUserData = () => {
 
 const showUnavailableFilter = items =>
     items.filter(item => {
+        if (item.kind === "unavailable") {
+            return true;
+        }
+
         if (
             item.status.uploadStatus !== "processed" &&
             item.status.uploadStatus !== "uploaded"
@@ -37,10 +41,14 @@ const showDuplicatesFilter = (items, duplicateWords) => {
     let tmp = {};
 
     for (let [index, item] of items.entries()) {
+        if (item.kind === "unavailable") {
+            continue;
+        }
+
         let words = item.snippet.title
             .replace(
                 /`|~|!|@|#|\$|%|\^|&|\*|\(|\)|\+|=|\[|\{|\]|\}|\||\\|'|<|,|\.|>|\?|\/|"|;|:|-/g,
-                ""
+                " "
             )
             .toLowerCase()
             .match(/\S+/g);
@@ -48,7 +56,7 @@ const showDuplicatesFilter = (items, duplicateWords) => {
         let duplicate = "";
 
         if (words.length <= duplicateWords) {
-            duplicate = words.join("");
+            duplicate = words.join(" ");
             if (!tmp[duplicate]) {
                 tmp[duplicate] = {
                     index: index,
@@ -58,17 +66,21 @@ const showDuplicatesFilter = (items, duplicateWords) => {
                 tmp[duplicate].items.push(item);
             }
         } else {
-            for (let i = 0; i < words.length; i++) {
-                duplicate = duplicate + " " + words[i];
-                if ((i + 1) % duplicateWords === 0) {
-                    duplicate = duplicate.trim();
-                    if (!tmp[duplicate]) {
-                        tmp[duplicate] = { index: index, items: [item] };
-                    } else if (tmp[duplicate].index !== index) {
-                        tmp[duplicate].items.push(item);
-                    }
-                    duplicate = "";
+            for (let i = 0; i < words.length - (duplicateWords - 1); i++) {
+                for (let j = 0; j < duplicateWords; j++) {
+                    duplicate = duplicate + " " + words[i + j];
                 }
+
+                duplicate = duplicate.trim();
+
+                if (!tmp[duplicate]) {
+                    tmp[duplicate] = { index: index, items: [item] };
+                } else if (tmp[duplicate].index !== index) {
+                    tmp[duplicate].index = index;
+                    tmp[duplicate].items.push(item);
+                }
+
+                duplicate = "";
             }
         }
     }

@@ -12,26 +12,54 @@ const SelectedPlaylist = props => (
         <ul className="yt-items">
             {props.items.map((data, index) => (
                 <li
-                    className={
-                        "playlist-item" +
-                        (data.kind !== "youtube#video" ? " message" : "")
-                    }
+                    className={"playlist-item" + applyClass(data.kind)}
                     key={index}
                 >
-                    {data.kind === "youtube#video" ? (
-                        <PlaylistItem
-                            data={data}
-                            removing={props.removing}
-                            dispatch={props.dispatch}
-                        />
-                    ) : (
-                        <Message message={data.message} />
+                    {selectChild(
+                        data.kind,
+                        data,
+                        props.removing,
+                        props.dispatch
                     )}
                 </li>
             ))}
         </ul>
     </React.Fragment>
 );
+
+const applyClass = type => {
+    switch (type) {
+        case "message":
+            return " message";
+        case "unavailable":
+            return " unavailable";
+        default:
+            return "";
+    }
+};
+
+const selectChild = (type, data, removing, dispatch) => {
+    switch (type) {
+        case "message":
+            return <Message message={data.message} />;
+        case "unavailable":
+            return (
+                <UnavailableItem
+                    data={data}
+                    removing={removing}
+                    dispatch={dispatch}
+                />
+            );
+        default:
+            return (
+                <PlaylistItem
+                    data={data}
+                    removing={removing}
+                    dispatch={dispatch}
+                />
+            );
+    }
+};
 
 const PlaylistItem = props => (
     <React.Fragment>
@@ -46,6 +74,32 @@ const PlaylistItem = props => (
 );
 
 const Message = ({ message }) => <p>{message}</p>;
+
+const UnavailableItem = props => (
+    <React.Fragment>
+        <ImageContainer data={props.data} />
+        <div className="yt-data-container">
+            <h3 className="yt-data-title">
+                <a
+                    href={
+                        "https://youtube.com/watch?v=" +
+                        props.data.contentDetails.videoId
+                    }
+                >
+                    {props.data.contentDetails.videoId}
+                </a>
+            </h3>
+            <div className="yt-data-metadata">
+                <p className="yt-data-description">unavailable</p>
+            </div>
+        </div>
+        <RemoveItem
+            removing={props.removing}
+            playlistItemId={props.data.id}
+            dispatch={props.dispatch}
+        />
+    </React.Fragment>
+);
 
 const ImageContainer = ({ data }) => (
     <div className="yt-img-container">
