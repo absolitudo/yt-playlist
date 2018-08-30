@@ -136,6 +136,49 @@ main .yt-delete-container img {
     cursor: pointer;
 }
 
+main .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+
+main .filter-container .filter {
+    margin: 20px;
+    height: 50px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    min-width: 200px;
+    max-width: 250px;
+    padding-left: 30px;
+    font-weight: bold;
+}
+main .filter-container .filter.selected {
+    background-color: #eee;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+main .filter-container .filter img {
+    position: absolute;
+    top: 12.5px;
+    left: 5px;
+    cursor: pointer;
+}
+
+main .filter-container .filter span {
+    cursor: pointer;
+}
+
+main .filter-container .filter input {
+    margin: 0px 2px;
+    width: 40px;
+}
+
+main .filter-container .filter button {
+    border: none;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
     main .yt-items li {
         display: block;
@@ -170,5 +213,10 @@ main .yt-delete-container img {
         height: -ms-calc(100% - 138px);
         height: -o-calc(100% - 138px);
         height: calc(100% - 138px);
+    }
+
+    
+    main .filter-container {
+        justify-content: center;
     }
 }

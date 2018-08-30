@@ -13,7 +13,7 @@ const SelectedPlaylist = props => (
             {props.items.map((data, index) => (
                 <li
                     className={"playlist-item" + applyClass(data.kind)}
-                    key={index}
+                    key={data.id + index.toString()}
                 >
                     {selectChild(
                         data.kind,

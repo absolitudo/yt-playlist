@@ -6,7 +6,7 @@ import constants from "../../../../constants";
 import { Filter } from "./index";
 
 const ShowDuplicates = props => (
-    <Filter showClear={props.showClear}>
+    <Filter selected={props.selected}>
         <form onSubmit={event => handleSubmit(event, props.setFilter)}>
             Matching words in titles:
             <input
@@ -17,6 +17,9 @@ const ShowDuplicates = props => (
                 value={props.duplicateWords}
                 onChange={event => props.setDuplicateWords(event.target.value)}
             />
+            <button type="submit" className="blue">
+                search
+            </button>
         </form>
     </Filter>
 );
@@ -27,7 +30,7 @@ const handleSubmit = (event, setFilter) => {
 };
 
 const mapStateToProps = state => ({
-    showClear:
+    selected:
         state.managePlaylists.selectedPlaylist.filters.selectedFilter ===
         constants.filters.showDuplicates,
     duplicateWords:

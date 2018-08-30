@@ -6,7 +6,7 @@ import constants from "../../../../constants";
 import { Filter } from "./index";
 
 const ShowUnavailable = props => (
-    <Filter showClear={props.showClear}>
+    <Filter selected={props.selected}>
         <span
             onClick={() => props.setFilter(constants.filters.showUnavailable)}
         >
@@ -16,7 +16,7 @@ const ShowUnavailable = props => (
 );
 
 const mapStateToProps = state => ({
-    showClear:
+    selected:
         state.managePlaylists.selectedPlaylist.filters.selectedFilter ===
         constants.filters.showUnavailable
 });

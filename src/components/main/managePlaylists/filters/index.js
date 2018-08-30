@@ -12,9 +12,9 @@ const mapDispatchToProps = dispatch =>
 const Filter = connect(
     null,
     mapDispatchToProps
-)(({ children, showClear, setFilter }) => (
-    <div className="filter">
-        {showClear && (
+)(({ children, selected, setFilter }) => (
+    <div className={"filter" + (selected ? " selected" : "")}>
+        {selected && (
             <img src={clearIcon} alt="clear" onClick={() => setFilter(null)} />
         )}
         {children}
