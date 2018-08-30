@@ -6,7 +6,9 @@ const ShowPlaylists = props => (
     <ul className="yt-items playlist">
         {props.items.map((data, index) => (
             <li
-                onClick={() => fetchPlaylistFromId(props.dispatch, data.id)}
+                onClick={() =>
+                    fetchPlaylistFromId(props.dispatch, data.id, props.fetching)
+                }
                 key={index}
             >
                 <div className="yt-img-container">
@@ -27,7 +29,12 @@ const ShowPlaylists = props => (
 );
 
 const mapStateToProps = state => ({
-    items: state.managePlaylists.playlists.items
+    items: state.managePlaylists.playlists.items,
+    fetching:
+        state.managePlaylists.playlists.fetching ||
+        state.managePlaylists.selectedPlaylist.fetching
+            ? true
+            : false
 });
 
 export default connect(mapStateToProps)(ShowPlaylists);

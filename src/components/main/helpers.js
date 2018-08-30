@@ -9,42 +9,46 @@ import {
 import playlists from "./forDevPlaylists.json";
 import aPlaylist from "./funPlaylist.json";
 
-const getPlaylists = dispatch => {
-    dispatch(startPlaylistsFetch());
-    fetch("/api/getplaylists")
-        .then(res => res.json())
-        .then(res => {
-            if (!res.error) {
-                dispatch(setPlaylists(res));
-            } else {
-                dispatch(displayError(res.error));
-            }
-        })
-        .catch(e => {
-            dispatch(setPlaylists(playlists));
-            //dispatch(displayError(e.toString()))
-        });
+const getPlaylists = (dispatch, fetching) => {
+    if (!fetching) {
+        dispatch(startPlaylistsFetch());
+        fetch("/api/getplaylists")
+            .then(res => res.json())
+            .then(res => {
+                if (!res.error) {
+                    dispatch(setPlaylists(res));
+                } else {
+                    dispatch(displayError(res.error));
+                }
+            })
+            .catch(e => {
+                dispatch(setPlaylists(playlists));
+                //dispatch(displayError(e.toString()))
+            });
+    }
 };
 
-const fetchPlaylistFromId = (dispatch, playlistId) => {
-    dispatch(selectPlaylist(playlistId));
-    fetch("/api/getplaylistitems", {
-        headers: {
-            "playlist-id": playlistId
-        }
-    })
-        .then(res => res.json())
-        .then(res => {
-            if (!res.error) {
-                dispatch(setSelectedPlaylistItems(res));
-            } else {
-                dispatch(displayError(res.error));
+const fetchPlaylistFromId = (dispatch, playlistId, fetching) => {
+    if (!fetching) {
+        dispatch(selectPlaylist(playlistId));
+        fetch("/api/getplaylistitems", {
+            headers: {
+                "playlist-id": playlistId
             }
         })
-        .catch(e => {
-            dispatch(setSelectedPlaylistItems(aPlaylist));
-            //dispatch(displayError(e.toString()))
-        });
+            .then(res => res.json())
+            .then(res => {
+                if (!res.error) {
+                    dispatch(setSelectedPlaylistItems(res));
+                } else {
+                    dispatch(displayError(res.error));
+                }
+            })
+            .catch(e => {
+                dispatch(setSelectedPlaylistItems(aPlaylist));
+                //dispatch(displayError(e.toString()))
+            });
+    }
 };
 
 const convertViewCount = viewCount => {

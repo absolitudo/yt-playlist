@@ -41,10 +41,14 @@ const BackIcon = ({ onClick }) => (
 const handleRefreshClick = props => {
     switch (props.display) {
         case constants.display.selectedPlaylist:
-            fetchPlaylistFromId(props.dispatch, props.playlistId);
+            fetchPlaylistFromId(
+                props.dispatch,
+                props.playlistId,
+                props.fetching
+            );
             break;
         case constants.display.playlists:
-            getPlaylists(props.dispatch);
+            getPlaylists(props.dispatch, props.fetching);
             break;
         default:
             return undefined;
@@ -53,7 +57,12 @@ const handleRefreshClick = props => {
 
 const mapStateToProps = state => ({
     display: state.managePlaylists.display,
-    playlistId: state.managePlaylists.selectedPlaylist.id
+    playlistId: state.managePlaylists.selectedPlaylist.id,
+    fetching:
+        state.managePlaylists.playlists.fetching ||
+        state.managePlaylists.selectedPlaylist.fetching
+            ? true
+            : false
 });
 
 const mapDispatchToProps = dispatch => ({
