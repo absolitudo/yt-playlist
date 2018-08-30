@@ -6,9 +6,6 @@ import {
     displayError,
     filterRemovedItem
 } from "../../redux/actions";
-import playlists from "./forDevPlaylists.json";
-import aPlaylist from "./funPlaylist.json";
-
 const getPlaylists = (dispatch, fetching) => {
     if (!fetching) {
         dispatch(startPlaylistsFetch());
@@ -21,10 +18,7 @@ const getPlaylists = (dispatch, fetching) => {
                     dispatch(displayError(res.error));
                 }
             })
-            .catch(e => {
-                dispatch(setPlaylists(playlists));
-                //dispatch(displayError(e.toString()))
-            });
+            .catch(e => dispatch(displayError(e.toString())));
     }
 };
 
@@ -44,10 +38,7 @@ const fetchPlaylistFromId = (dispatch, playlistId, fetching) => {
                     dispatch(displayError(res.error));
                 }
             })
-            .catch(e => {
-                dispatch(setSelectedPlaylistItems(aPlaylist));
-                //dispatch(displayError(e.toString()))
-            });
+            .catch(e => dispatch(displayError(e.toString())));
     }
 };
 
