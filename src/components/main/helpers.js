@@ -6,6 +6,7 @@ import {
     displayError,
     filterRemovedItem
 } from "../../redux/actions";
+
 const getPlaylists = (dispatch, fetching) => {
     if (!fetching) {
         dispatch(startPlaylistsFetch());

@@ -62,14 +62,38 @@ const selectPlaylist = (state, payload) => ({
     }
 });
 
-const setSelectedPlaylistItems = (state, payload) => ({
-    ...state,
-    selectedPlaylist: {
-        ...state.selectedPlaylist,
-        fetching: false,
-        items: payload
+const setSelectedPlaylistItems = (state, payload) => {
+    let filteredItems = [];
+
+    if (state.selectedPlaylist.filters.selectedFilter) {
+        switch (state.selectedPlaylist.filters.selectedFilter) {
+            case constants.filters.showUnavailable:
+                filteredItems = showUnavailableFilter(payload);
+                break;
+            case constants.filters.showDuplicates:
+                filteredItems = showDuplicatesFilter(
+                    payload,
+                    state.selectedPlaylist.filters.duplicateWords
+                );
+                break;
+            default:
+                filteredItems = [];
+        }
     }
-});
+
+    return {
+        ...state,
+        selectedPlaylist: {
+            ...state.selectedPlaylist,
+            fetching: false,
+            items: payload,
+            filters: {
+                ...state.selectedPlaylist.filters,
+                filteredItems: filteredItems
+            }
+        }
+    };
+};
 
 const setPlaylists = (state, payload) => ({
     ...state,
@@ -88,13 +112,27 @@ const filterRemovedItem = (state, playlistItemId) => ({
         items: state.selectedPlaylist.items.filter(
             item => item.id !== playlistItemId
         ),
+        filters: {
+            ...state.selectedPlaylist.filters,
+            filteredItems: state.selectedPlaylist.filters.filteredItems.filter(
+                item => item.id !== playlistItemId
+            )
+        },
         removing: false
     }
 });
 
 const changeManagePlaylistDisplay = (state, display) => ({
     ...state,
-    display
+    display: display,
+    selectedPlaylist: {
+        ...state.selectedPlaylist,
+        filters: {
+            selectedFilter: null,
+            duplicateWords: 2,
+            filteredItems: []
+        }
+    }
 });
 
 const setFilter = (state, selectedFilter) => {
